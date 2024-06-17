@@ -38,8 +38,7 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.0.2"
   },
-  "styles":
-  [
-"./node_modules/font-awesome/css/font-awesome.min.css"
+  "styles": [
+    "./node_modules/font-awesome/css/font-awesome.min.css"
   ]
 }

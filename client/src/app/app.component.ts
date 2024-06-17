@@ -1,27 +1,31 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit  } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from './_services/account.service';
+import { User } from '_models/user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   [x: string]: any;
-  
+
   title = 'DatingApp';
-  users:any;
-  constructor( private http:HttpClient){}
+ 
+  constructor( private accountService: AccountService) { }
   ngOnInit(): void {
-    //Called after the constructor, initializinginput properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.http.get('https://localhost:5001/api/users').subscribe(
-      {
-        next:response =>this.users=response,
-        error: ()=>{},
-        complete: ()=> console.log('request completed')
-      }
-    )
+   
+   this.setCurrentUser();
+
+
+  }
+ 
+  setCurrentUser() {
+    const userString = localStorage.getItem('user');
+    if (!userString) return;
+    const user: User = JSON.parse(userString);
+    this.accountService.SetCurrentUser(user);
   }
 }
 
