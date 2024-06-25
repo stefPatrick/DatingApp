@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, Signal, signal } from '@angular/core';
+import { Component, NgModule, OnInit, Signal, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
@@ -17,9 +17,9 @@ import { NgIf, AsyncPipe } from '@angular/common';
 export class NavComponent implements OnInit {
   model: any = {};
   currentUser =   signal<User |null>(null);
-  constructor(public accountService: AccountService) {
-
-  }
+  
+  
+  accountService=inject(AccountService);
   ngOnInit(): void {
     
 
@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
     this.accountService.login(this.model).subscribe({
       next: response => {
         console.log(response);
-       
+    
 
       },
       error: error => console.log(error)
@@ -41,6 +41,7 @@ export class NavComponent implements OnInit {
   }
   logout() {
     this.accountService.logout();
+    
    
   }
 }
