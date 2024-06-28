@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { User } from '_models/user';
 import { BehaviorSubject, map } from 'rxjs';
 
@@ -7,12 +7,10 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-
+private http =inject(HttpClient);
    baseUrl ='https://localhost:5001/api';
    currentUser=signal<User | null>(null);
-  constructor(private http: HttpClient) { 
-
-  }
+ 
   SetCurrentUser(user :User)
   {
     this.currentUser.set(user);

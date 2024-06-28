@@ -1,7 +1,7 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+<form class="form-floating" #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
 <h2 class="text-center text-primary">Sign up</h2>
 <hr>
-<div class="mb-3 form-floating">
+<div class="mb-3 ">
     <input  class="form-control" name="username"
      type="text" [(ngModel)]="model.username" placeholder="Username">
    

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { NgIf } from '@angular/common';
 
@@ -12,16 +12,16 @@ import { NgIf } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
+  http =inject(HttpClient);
   users:any;
-  constructor(private http: HttpClient) {
-
-  }
+ 
   ngOnInit(): void {
-this.getUsers();
+    this.getUsers();
   }
   registerToggle() {
     this.registerMode = !this.registerMode;
   }
+ 
   getUsers() {
     this.http.get('https://localhost:5001/api/users').subscribe(
       {
@@ -31,6 +31,7 @@ this.getUsers();
       }
     )
   }
+
 cancelRegisterMode(event:boolean )
 {
   this.registerMode=event;

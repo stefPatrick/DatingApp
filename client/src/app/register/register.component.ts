@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-register',
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  @Output() cancelRegister = new EventEmitter();
+  cancelRegister = output<boolean>();
+  private toastr=inject(ToastrService);
   model: any = {}
   constructor(private accountservice: AccountService) { }
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class RegisterComponent implements OnInit {
           this.cancel();
 
         },
-        error: error => console.log(error)
+        error: error => this.toastr.error(error.error)
 
       }
     )
