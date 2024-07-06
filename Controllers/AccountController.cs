@@ -24,7 +24,7 @@ public class AccountController : BaseApiController
     {
         if (await UserExists(registerDtO.Username))
             return BadRequest("user name is taken");
-        using var hmac = new HMACSHA512();
+       /*  using var hmac = new HMACSHA512();
         var user = new AppUser
         {
             UserName = registerDtO.Username.ToLower(),
@@ -39,7 +39,8 @@ public class AccountController : BaseApiController
         {
             Username = user.UserName,
             Token= _tokenServices.CreateToken(user)
-        };
+        }; */
+        return Ok();
 
     }
     private async Task<bool> UserExists(string username)
