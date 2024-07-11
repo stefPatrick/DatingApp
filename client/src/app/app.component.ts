@@ -6,13 +6,13 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { HttpClient } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
-
+import { NgxSpinnerComponent } from 'ngx-spinner';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [ RouterOutlet, NavComponent, HomeComponent]
+    imports: [ RouterOutlet, NavComponent, HomeComponent,NgxSpinnerComponent]
 })
 export class AppComponent implements OnInit {
   

@@ -9,13 +9,16 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { ToastrModule, provideToastr } from "ngx-toastr";
 import { errorInterceptor } from "./_interceptors/error.interceptor";
 import { jwtInterceptor } from "./_interceptors/jwt.interceptor";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { loadingInterceptor } from "./_interceptors/loading.interceptor";
 
 export const appConfig:ApplicationConfig=
 {
     providers: [
         provideRouter(routes),
-        importProvidersFrom(ToastrModule.forRoot(), FormsModule, BrowserModule, FormsModule, BsDropdownModule.forRoot(),RouterModule),
-        provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor])),
+        importProvidersFrom(ToastrModule.forRoot(), FormsModule, BrowserModule, FormsModule,
+         BsDropdownModule.forRoot(),RouterModule,NgxSpinnerModule),
+        provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor,loadingInterceptor])),
         provideAnimations(),
         provideToastr({
             positionClass: 'toast-bottom-right'
