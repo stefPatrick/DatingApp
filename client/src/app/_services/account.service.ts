@@ -14,6 +14,7 @@ private http =inject(HttpClient);
  
   SetCurrentUser(user :User)
   {
+    localStorage.setItem('user',JSON.stringify(user));
     this.currentUser.set(user);
 
   }
@@ -25,8 +26,7 @@ private http =inject(HttpClient);
 const user=response;
 if(user)
   {
-    localStorage.setItem('user',JSON.stringify(user));
-    this.currentUser.set(user);
+    this.SetCurrentUser(user);
   }
       })
     )
@@ -37,8 +37,7 @@ if(user)
       map(user => {
         if(user)
           {
-            localStorage.setItem('user',JSON.stringify(user));
-          this.currentUser.set(user);
+            this.SetCurrentUser(user);
           }
           return user;
       }

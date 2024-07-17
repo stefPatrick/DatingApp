@@ -10,6 +10,7 @@ public class Photo
     public required string Url{ get; set; }
     public bool IsMain { get; set; }
     //nav oroperties
+    public string? PublicId { get; set; }
     public int AppUserId { get; set; }
 
     public AppUser AppUser { get; set; }=null!;

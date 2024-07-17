@@ -75,7 +75,7 @@ class="form-control mx-2" name="country">
     
 </tab>
 <tab heading="Change Photos ">
-    photo edit
+   <app-photo-editor [member]="member" (memberChange)="onMemberChange($event)" ></app-photo-editor>
  
 </tab>
 
